@@ -1,10 +1,10 @@
 package com.seraleman.purchasing_ms_be.components.purchase;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.seraleman.purchasing_ms_be.components.purchaseItems.PurchaseItem;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.seraleman.purchasing_ms_be.components.suplier.Suplier;
 
 import org.springframework.data.annotation.Id;
@@ -17,12 +17,12 @@ public class Purchase {
     @Id
     private String id;
 
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime date;
 
     @DBRef
     private Suplier suplier;
 
-    @DBRef
     private List<PurchaseItem> items;
 
     public Purchase() {
@@ -37,11 +37,11 @@ public class Purchase {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

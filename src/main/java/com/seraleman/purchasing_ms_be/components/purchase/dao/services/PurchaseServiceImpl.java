@@ -1,5 +1,8 @@
 package com.seraleman.purchasing_ms_be.components.purchase.dao.services;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +62,9 @@ public class PurchaseServiceImpl implements IPurchaseService {
     public ResponseEntity<?> create(Purchase purchase) {
 
         Purchase purchaseNew = null;
+        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("America/Bogota"));
+        LocalDateTime bogotaLocal = zdt.toLocalDateTime();
+        purchase.setDate(bogotaLocal);
 
         try {
             purchaseNew = purchaseDao.save(purchase);
@@ -85,6 +91,8 @@ public class PurchaseServiceImpl implements IPurchaseService {
 
         try {
             purchaseCurrent.setDate(purchase.getDate());
+            purchaseCurrent.setItems(purchase.getItems());
+            purchaseCurrent.setSuplier(purchase.getSuplier());
             purchaseDao.save(purchaseCurrent);
         } catch (DataAccessException e) {
             return response.errorDataAccess(e);

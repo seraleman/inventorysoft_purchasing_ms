@@ -1,4 +1,4 @@
-package com.seraleman.purchasing_ms_be.components.purchaseItems;
+package com.seraleman.purchasing_ms_be.components.purchase;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
